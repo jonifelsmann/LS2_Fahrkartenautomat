@@ -10,18 +10,27 @@ class Fahrkartenautomat {
 		double eingeworfeneMuenze;
 		double rueckgabebetrag;
 		double nochZuZahlen;
+		int anzahlTickets;
 
 		// Geldbetrag eingeben
 		System.out.print("Zu zahlender Betrag (Euro): ");
 		zuZahlenderBetrag = tastatur.nextDouble();
+		
+		// Anzahl der Tickets
+		System.out.print("Anzahl der Tickets: ");
+		anzahlTickets = tastatur.nextInt();
 
+		zuZahlenderBetrag = zuZahlenderBetrag * anzahlTickets;
+		
 		// Geldeinwurf
 		eingezahlterGesamtbetrag = 0.0;
 		nochZuZahlen = 0.0;
 		while (eingezahlterGesamtbetrag < zuZahlenderBetrag) {
 			nochZuZahlen = zuZahlenderBetrag - eingezahlterGesamtbetrag;
-			System.out.println("Noch zu zahlen: " + nochZuZahlen);
-			System.out.print("Eingabe (mind. 5 Cent, höchstens 2 Euro): ");
+			System.out.print("Noch zu zahlen: ");
+			System.out.printf("%.2f ", nochZuZahlen);
+			System.out.print("Euro");
+			System.out.print("\nEingabe (mind. 5 Cent, höchstens 2 Euro): ");
 			eingeworfeneMuenze = tastatur.nextDouble();
 			eingezahlterGesamtbetrag = eingezahlterGesamtbetrag + eingeworfeneMuenze;
 		}
@@ -42,16 +51,18 @@ class Fahrkartenautomat {
 		// Rückgeldberechnung und -ausgabe
 		rueckgabebetrag = eingezahlterGesamtbetrag - zuZahlenderBetrag;
 		if (rueckgabebetrag > 0.0) {
-			System.out.println("Der Rückgabebetrag in Höhe von " + rueckgabebetrag + " Euro");
-			System.out.println("wird in folgenden Münzen ausgezahlt:");
+			System.out.println("Der Rückgabebetrag in Höhe von ");
+			System.out.printf("%.2f ", rueckgabebetrag);
+			System.out.println("Euro ");
+			System.out.println(" wird in folgenden Münzen ausgezahlt:");
 
 			while (rueckgabebetrag >= 2.0) { // 2-Euro-Münzen
 				System.out.println("2 Euro");
-				rueckgabebetrag = rueckgabebetrag - 2.0;
+				rueckgabebetrag = rueckgabebetrag - 2.00;
 			}
 			while (rueckgabebetrag >= 1.0) { // 1-Euro-Münzen
 				System.out.println("1 Euro");
-				rueckgabebetrag = rueckgabebetrag - 1.0;
+				rueckgabebetrag = rueckgabebetrag - 1.00;
 			}
 			while (rueckgabebetrag >= 0.5) { // 50-Cent-Münzen
 				System.out.println("50 Cent");
